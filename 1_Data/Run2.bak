@@ -1,0 +1,63 @@
+#! /bin/sh
+##
+\rm MFS2.out
+\rm control
+\rm MFS2.results
+
+## 6168 data points
+## lat 42 26' 56" N
+## 42.4489
+## long 72 40' 50" W
+## 72.680555
+
+echo "Starting the control file definition."
+cat << END > control
+&param
+kind=7,
+span=6168, shift=720,
+lpout=0, filout=1,
+igrp=0,
+lagp=2, lagint=1,
+spectw=1,
+lat=42.449, long=-72.681, ht=250.8, grav=0,
+year=2017, mon=7, day=03, hr=18, min=00, sec=0,
+timsys=4.0d0
+ndata=6168, delta=0.16666667,
+rlim=9000,
+inform=3,
+maxjmp=2,
+dmin=0.25d0,
+weight=0.25d0,
+&end
+                      Funky Strain
+
+----
+MFS-2, Whately, MA              station name
+Solinst Levelogger Junior Edge  instrument name
+----
+Water level in meters                    unit of tidal data
+Atmospheric pressure in meters/cm2           title of associated dataset
+END
+
+echo "Now to run the program."
+
+#
+# run the program
+# The water level and barometric pressure data files have a 1 line header
+#
+echo "Using Well MFS 2 from MacLeish Field Station"
+
+# make the data file
+echo "MFS-2, Whately, MA" > data.mfs2
+cat ../Data/MFS2.bay >> data.mfs2
+#cat ../Data/MFS2_temp.bay >> data.mfs2
+echo "Barometeric pressure, Whately, MA" > baro.mfs2
+cat ../Data/Baro_mfs2.bay >> baro.mfs2
+
+cat data.mfs2 | /home/wclement/bin/baytap08 control MFS2.results baro.mfs2 > MFS2.out
+#cat data.mfs2 | /home/wclement/bin/baytap08 control MFS2.results > MFS2.out
+
+#echo "Running awk script"
+awk -f strip.awk < MFS2.results > MFS2.phases
+
+#cat MFS2.phases

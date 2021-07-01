@@ -1,0 +1,4 @@
+the data is sampled every 10 minutes or 0.166667 hours
+31 days at 24 hours/day at 6 samples per hour is
+4464 samples per month  (24*31*6)
+4320 is 30 days at 24 hours/day at 6 samples per hour (24*30*6)

@@ -1,0 +1,25 @@
+&param
+kind=7,
+span=4464, shift=2016,
+lpout=0, filout=1,
+igrp=0,
+lagp=2, lagint=1,
+spectw=1,
+lat=42.449, long=-72.681, ht=250.8, grav=0,
+year=2017, mon=7, day=03, hr=18, min=00, sec=0,
+timsys=4.0d0
+ndata=14950, delta=0.16666667,
+rlim=9000,
+inform=3,
+maxjmp=2,
+dmin=0.25d0,
+weight=0.25d0,
+&end
+                      Well Tidal Strain
+
+----
+MFS-2, Whately, MA              station name
+Solinst Levelogger Junior Edge  instrument name
+----
+Water level in meters                    unit of tidal data
+Atmospheric pressure in mbar             title of associated dataset
